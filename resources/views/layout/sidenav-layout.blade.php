@@ -44,8 +44,10 @@
         <a class="navbar-brand" href="#">
             <span class="icon-nav m-0 h5" onclick="MenuBarClickHandler()">
                 <img class="nav-logo-sm mx-2"  src="{{asset('images/menu.svg')}}" alt="logo"/>
+               
             </span>
-            <img class="nav-logo  mx-2"  src="{{asset('images/logo.png')}}" alt="logo"/>
+            <img class="nav-logo  mx-2" style="width: 100px; height:50px" src="{{asset('images/adasdasd.png')}}" alt="logo"/>
+          
         </a>
 
         <div class="float-right h-auto d-flex">
@@ -69,8 +71,9 @@
     </div>
 </nav>
 
-
+<br>
 <div id="sideNavRef" class="side-nav-open">
+    <br>
 
     <a href="{{url("/dashboard")}}" class="side-bar-item">
         <i class="bi bi-graph-up"></i>

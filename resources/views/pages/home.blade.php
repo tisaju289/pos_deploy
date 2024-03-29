@@ -4,8 +4,8 @@
 
     <nav class="navbar sticky-top shadow-sm navbar-expand-lg navbar-light py-2">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img class="img-fluid" src="{{asset('/images/logo.png')}}" alt="" width="96px">
+            <a class="navbar-brand" href="/">
+                <img class="nav-logo  mx-2" style="width: 100px; height:50px" src="{{asset('images/adasdasd.png')}}" alt="logo"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header01" aria-controls="header01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -138,7 +138,7 @@
             </div>
             <div class="mb-5"></div>
             <div class="container">
-                <p class="text-center">All rights reserved © Learn with Rabbil (LWR) 2023-2024</p>
+                <p class="text-center">All rights reserved © Ti Saju 2024</p>
             </div>
         </footer>
 

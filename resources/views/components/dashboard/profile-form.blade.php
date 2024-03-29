@@ -82,7 +82,7 @@
         }
         else{
             showLoader();
-            let res=await axios.post("/user-update",{
+            let res=await axios.post("/update-profile",{
                 firstName:firstName,
                 lastName:lastName,
                 mobile:mobile,
