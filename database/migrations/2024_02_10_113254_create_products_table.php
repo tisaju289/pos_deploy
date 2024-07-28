@@ -16,18 +16,28 @@ return new class extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('brand_id');
 
             $table->foreign('user_id')->references('id')->on('users')
                 ->cascadeOnUpdate()->restrictOnDelete();
 
             $table->foreign('category_id')->references('id')->on('categories')
                 ->cascadeOnUpdate()->restrictOnDelete();
+                
+            $table->foreign('brand_id')->references('id')->on('brands')
+                ->cascadeOnUpdate()->restrictOnDelete();
 
-
-            $table->string('name',100);
-            $table->string('price',50);
-            $table->string('unit',50);
-            $table->string('img_url',100);
+            $table->string('name');
+            $table->string('description');
+            $table->string('price');
+            $table->string('cost_price');
+            $table->string('unit');
+            $table->string('color');
+            $table->string('size');
+            $table->string('status')->default('active');
+            $table->date('date_added');
+            $table->date('expiry_date')->nullable();
+            $table->string('img_url');
 
 
             $table->timestamp('created_at')->useCurrent();

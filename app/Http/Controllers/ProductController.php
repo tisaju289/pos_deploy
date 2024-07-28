@@ -3,77 +3,66 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
-
-    function ProductPage():View{
+    public function ProductPage(){
         return view('pages.dashboard.product-page');
     }
-    function ProductCreate(Request $request)
-    {
-        $user_id=$request->header('id');
 
-        // Prepare File Name & Path
-        $img=$request->file('img');
-        $t=time();
-        $file_name=$img->getClientOriginalName();
-        $img_name="{$user_id}-{$t}-{$file_name}";
-        $img_url="uploads/{$img_name}";
+    public function ProductList(Request $request){
+        $user_id = $request->header('id');
+        return Product::where('user_id', $user_id)->get();
+    }
 
-
-        // Upload File
-        $img->move(public_path('uploads'),$img_name);
-
-
-        // Save To Database
+    public function ProductCreate(Request $request){
+        $user_id = $request->header('id');
+            // Prepare File Name & Path
+            $img=$request->file('img');
+            $t=time();
+            $file_name=$img->getClientOriginalName();
+            $img_name="{$user_id}-{$t}-{$file_name}";
+            $img_url="uploads/{$img_name}";
+    
+    
+            // Upload File
+            $img->move(public_path('uploads'),$img_name);
+    
         return Product::create([
-            'name'=>$request->input('name'),
-            'price'=>$request->input('price'),
-            'unit'=>$request->input('unit'),
+            'user_id' => $user_id,
+            'category_id' => $request->input('category_id'),
+            'brand_id' => $request->input('brand_id'),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'cost_price' => $request->input('cost_price'),
+            'unit' => $request->input('unit'),
+            'color' => $request->input('color'),
+            'size' => $request->input('size'),
+            'status' => $request->input('status'),
+            'date_added' => $request->input('date_added'),
+            'expiry_date' => $request->input('expiry_date'),
             'img_url'=>$img_url,
-            'category_id'=>$request->input('category_id'),
-            'user_id'=>$user_id
         ]);
     }
 
-
-    function DeleteProduct(Request $request)
-    {
-        $user_id=$request->header('id');
-        $product_id=$request->input('id');
-        $filePath=$request->input('file_path');
-        File::delete($filePath);
-        return Product::where('id',$product_id)->where('user_id',$user_id)->delete();
-
+    public function DeleteProduct(Request $request){
+        $product_id = $request->input('id');
+        $user_id = $request->header('id');
+        return Product::where('id', $product_id)->where('user_id', $user_id)->delete();
     }
 
-
-    function ProductByID(Request $request)
-    {
-        $user_id=$request->header('id');
-        $product_id=$request->input('id');
-        return Product::where('id',$product_id)->where('user_id',$user_id)->first();
+    public function ProductByID(Request $request){
+        $product_id = $request->input('id');
+        $user_id = $request->header('id');
+        return Product::where('id', $product_id)->where('user_id', $user_id)->first();
     }
 
-
-    function ProductList(Request $request)
-    {
-        $user_id=$request->header('id');
-        return Product::where('user_id',$user_id)->get();
-    }
-
-
-
-
-    function UpdateProduct(Request $request)
-    {
-        $user_id=$request->header('id');
-        $product_id=$request->input('id');
-
+    public function UpdateProduct(Request $request){
+        $product_id = $request->input('id');
+        $user_id = $request->header('id');
         if ($request->hasFile('img')) {
 
             // Upload New File
@@ -88,31 +77,39 @@ class ProductController extends Controller
             $filePath=$request->input('file_path');
             File::delete($filePath);
 
-            // Update Product
-
-            return Product::where('id',$product_id)->where('user_id',$user_id)->update([
-                'name'=>$request->input('name'),
-                'price'=>$request->input('price'),
-                'unit'=>$request->input('unit'),
-                'img_url'=>$img_url,
-                'category_id'=>$request->input('category_id')
-            ]);
-
-        }
-
-        else {
-            return Product::where('id',$product_id)->where('user_id',$user_id)->update([
-                'name'=>$request->input('name'),
-                'price'=>$request->input('price'),
-                'unit'=>$request->input('unit'),
-                'category_id'=>$request->input('category_id'),
+        return Product::where('id', $product_id)->where('user_id', $user_id)->update([
+            'category_id' => $request->input('category_id'),
+            'brand_id' => $request->input('brand_id'),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'cost_price' => $request->input('cost_price'),
+            'unit' => $request->input('unit'),
+            'color' => $request->input('color'),
+            'size' => $request->input('size'),
+            'status' => $request->input('status'),
+            'date_added' => $request->input('date_added'),
+            'expiry_date' => $request->input('expiry_date'),
+            'img_url'=>$img_url,
+        ]);
+    }
+    else {
+        return Product::where('id',$product_id)->where('user_id',$user_id)->update([
+           'category_id' => $request->input('category_id'),
+            'brand_id' => $request->input('brand_id'),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'cost_price' => $request->input('cost_price'),
+            'unit' => $request->input('unit'),
+            'color' => $request->input('color'),
+            'size' => $request->input('size'),
+            'status' => $request->input('status'),
+            'date_added' => $request->input('date_added'),
+            'expiry_date' => $request->input('expiry_date'),
             ]);
         }
     }
-
-
-
-
 
 
 

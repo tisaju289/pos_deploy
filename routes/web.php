@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
@@ -25,6 +26,7 @@ Route::get('/resetPassword',[UserController::class,'ResetPasswordPage'])->middle
 Route::get('/dashboard',[DashboardController::class,'DashboardPage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/userProfile',[UserController::class,'ProfilePage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/categoryPage',[CategoryController::class,'CategoryPage'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/brandPage',[BrandController::class,'BrandPage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/customerPage',[CustomerController::class,'CustomerPage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/productPage',[ProductController::class,'ProductPage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/invoicePage',[InvoiceController::class,'InvoicePage'])->middleware([TokenVerificationMiddleware::class]);
@@ -57,6 +59,12 @@ Route::post('/category-delete', [CategoryController::class,'CategoryDelete'])->m
 Route::post('/category-by-id', [CategoryController::class,'CategoryByID'])->middleware(TokenVerificationMiddleware::class);
 Route::post('/category-update', [CategoryController::class,'CategoryUpdate'])->middleware(TokenVerificationMiddleware::class);
 
+//brand API Route
+Route::post('/brand-create', [BrandController::class,'BrandCreate'])->middleware(TokenVerificationMiddleware::class);
+Route::get('/brand-list', [BrandController::class,'BrandList'])->middleware(TokenVerificationMiddleware::class);
+Route::post('/brand-delete', [BrandController::class,'BrandDelete'])->middleware(TokenVerificationMiddleware::class);
+Route::post('/brand-by-id', [BrandController::class,'BrandByID'])->middleware(TokenVerificationMiddleware::class);
+Route::post('/brand-update', [BrandController::class,'BrandUpdate'])->middleware(TokenVerificationMiddleware::class);
 
 
 //customers API Route

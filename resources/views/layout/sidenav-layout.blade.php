@@ -62,7 +62,7 @@
                     <a href="{{url('/userProfile')}}" class="side-bar-item">
                         <span class="side-bar-item-caption">Profile</span>
                     </a>
-                    <a href="{{url("/logout")}}" class="side-bar-item">
+                    <a href="{{url("/user-logout")}}" class="side-bar-item">
                         <span class="side-bar-item-caption">Logout</span>
                     </a>
                 </div>
@@ -84,7 +84,10 @@
         <i class="bi bi-people"></i>
         <span class="side-bar-item-caption">Customer</span>
     </a>
-
+    <a href="{{url("/brandPage")}}" class="side-bar-item">
+        <i class="bi bi-list-nested"></i>
+        <span class="side-bar-item-caption">Brand</span>
+    </a>
     <a href="{{url("/categoryPage")}}" class="side-bar-item">
         <i class="bi bi-list-nested"></i>
         <span class="side-bar-item-caption">Category</span>
