@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     function HomePage(){
-        return view('pages.home');
+        return view('pages.auth.login-page');
     }
 }

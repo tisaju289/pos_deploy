@@ -17,6 +17,10 @@ class CustomerController extends Controller
         return Customer::where('user_id',$user_id)->get();
     }
     public function CustomerCreate(Request $request){
+
+        $request->validate([
+            'email' => 'email',
+        ]);
             $user_id=$request->header('id');
             return Customer::create([
                 'name'=>$request->input('name'),

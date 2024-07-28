@@ -4,6 +4,11 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Update Product</h5>
             </div>
+
+
+
+
+
             <div class="modal-body">
                 <form id="update-form">
                     <div class="container">
